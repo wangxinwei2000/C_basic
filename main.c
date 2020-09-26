@@ -119,4 +119,5 @@ int main(){
     int length=strlen(str);
     remove_space(str);
     puts(str);
+    printf("程序执行完成！\n");
 }
