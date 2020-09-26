@@ -120,4 +120,5 @@ int main(){
     remove_space(str);
     puts(str);
     printf("程序执行完成！\n");
+    return 0;
 }
