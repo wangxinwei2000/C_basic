@@ -169,4 +169,5 @@ int main(){
     gets(str);
     str_loc(Str,str);
     return 0;
+
 }
