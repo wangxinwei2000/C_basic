@@ -105,20 +105,41 @@
 //   printf("%d+%di\n",num_add.real,num_add.image);
 //}
 //==============================================================
-void remove_space(char*str){
-    int i=0,j=0;
-    while (str[i]!='\0'){
-        if(str[i]!=' ')
-            str[j++]=str[i];
-        i++;
-    }
-    str[j]='\0';
-}
+//void remove_space(char*str){
+//    int i=0,j=0;
+//    while (str[i]!='\0'){
+//        if(str[i]!=' ')
+//            str[j++]=str[i];
+//        i++;
+//    }
+//    str[j]='\0';
+//}
+//int main(){
+//    char str[]="黄河 长江 长城";
+//    int length=strlen(str);
+//    remove_space(str);
+//    puts(str);
+//    printf("程序执行完成！\n");
+//    return 0;
+//}
 int main(){
-    char str[]="黄河 长江 长城";
-    int length=strlen(str);
-    remove_space(str);
-    puts(str);
-    printf("程序执行完成！\n");
+    int arr1[11]={10,20,30,40,50,60,70,80,90,100},n,loc;
+    printf("请输入插入的数字：");
+    scanf("%d",&n);
+    for(int i=0;i<=10;i++){
+        if(i==10){
+            loc=10;
+            break;
+        }
+        if(arr1[i]>n){
+            loc=i;
+            break;
+        }
+    }
+    for(int i=10;i>loc;i--)
+        *(arr1+i)=*(arr1+i-1);
+    *(arr1+loc)=n;
+    for(int i=0;i<11;i++)
+        printf("%d ",*(arr1+i));
     return 0;
 }
