@@ -122,24 +122,51 @@
 //    printf("程序执行完成！\n");
 //    return 0;
 //}
-int main(){
-    int arr1[11]={10,20,30,40,50,60,70,80,90,100},n,loc;
-    printf("请输入插入的数字：");
-    scanf("%d",&n);
-    for(int i=0;i<=10;i++){
-        if(i==10){
-            loc=10;
-            break;
+//========================================
+//int main(){
+//    int arr1[11]={10,20,30,40,50,60,70,80,90,100},n,loc;
+//    printf("请输入插入的数字：");
+//    scanf("%d",&n);
+//    for(int i=0;i<=10;i++){
+//        if(i==10){
+//            loc=10;
+//            break;
+//        }
+//        if(arr1[i]>n){
+//            loc=i;
+//            break;
+//        }
+//    }
+//    for(int i=10;i>loc;i--)
+//        *(arr1+i)=*(arr1+i-1);
+//    *(arr1+loc)=n;
+//    for(int i=0;i<11;i++)
+//        printf("%d ",*(arr1+i));
+//    return 0;
+//}
+//============================================
+void str_loc(char* Str, char *str){
+    int len=strlen(str);
+    int i=0;
+    while(Str[i]!='\0'){
+        for(int j=0;j<=len;j++){
+            if(j==len){
+                printf("字符串位置为：%d",i);
+                return;
+            }
+            if(Str[i+j]!=str[j])
+                break;
         }
-        if(arr1[i]>n){
-            loc=i;
-            break;
-        }
+        i++;
     }
-    for(int i=10;i>loc;i--)
-        *(arr1+i)=*(arr1+i-1);
-    *(arr1+loc)=n;
-    for(int i=0;i<11;i++)
-        printf("%d ",*(arr1+i));
+    printf("字符串未找到\n");
+}
+int main(){
+    char Str[50],str[20];
+    printf("请输入字符串：");
+    gets(Str);
+    printf("请输入要查要的字符串：");
+    gets(str);
+    str_loc(Str,str);
     return 0;
 }
