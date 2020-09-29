@@ -144,30 +144,50 @@
 //        printf("%d ",*(arr1+i));
 //    return 0;
 //}
-//============================================
-void str_loc(char* Str, char *str){
-    int len=strlen(str);
-    int i=0;
-    while(Str[i]!='\0'){
-        for(int j=0;j<=len;j++){
-            if(j==len){
-                printf("字符串位置为：%d",i);
-                return;
-            }
-            if(Str[i+j]!=str[j])
-                break;
-        }
-        i++;
+//============================================字符串查找
+//void str_loc(char* Str, char *str){
+//    int len=strlen(str);
+//    int i=0;
+//    while(Str[i]!='\0'){
+//        for(int j=0;j<=len;j++){
+//            if(j==len){
+//                printf("字符串位置为：%d",i);
+//                return;
+//            }
+//            if(Str[i+j]!=str[j])
+//                break;
+//        }
+//        i++;
+//    }
+//    printf("字符串未找到\n");
+//}
+//int main(){
+//    char Str[50],str[20];
+//    printf("请输入字符串：");
+//    gets(Str);
+//    printf("请输入要查要的字符串：");
+//    gets(str);
+//    str_loc(Str,str);
+//    return 0;
+//
+//}
+//=========================================字符串出现次数使用strstr
+int sum_str(char*Str,char *str){
+    int sum=0,len=strlen(str);
+    char *p =strstr(Str,str);
+//    printf("%s\n",p);//result=abcdsdabcdedabcdwd//第一次出现abc后的字符串
+    while (p!=NULL){
+        sum++;
+        p=p+3;
+        p=strstr(p,str);
     }
-    printf("字符串未找到\n");
+    return sum;
 }
 int main(){
-    char Str[50],str[20];
-    printf("请输入字符串：");
-    gets(Str);
-    printf("请输入要查要的字符串：");
-    gets(str);
-    str_loc(Str,str);
+    char Str[]="sdaabcdsdabcdedabcdwd",str[]="abc";
+    int sum = sum_str(Str,str);
+    printf("字符串出现次数：%d",sum);
     return 0;
-
 }
+
+
