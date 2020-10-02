@@ -189,78 +189,112 @@
 //    printf("字符串出现次数：%d",sum);
 //    return 0;
 //}
-typedef struct student{
-    int data;
-    struct student *next;
-}Node;
-Node *creat_head(){
-    Node *head =(Node*)malloc(sizeof(Node));
-    head->next=NULL;
-    return head;
-}
-void insert_head(int data,Node *head){
-    Node *p=(Node*)malloc(sizeof(Node));
-    p->data=data;
-    p->next=head->next;
-    head->next=p;
-    printf("头部插入数据%d\n",data);
-}
-void remove_node(int data,Node *head){
-    Node *p=head;
-    while (p!=NULL){
-        if((p->next==NULL)&&(p->data!=data)){
-            printf("%d不存在无法删除\n",data);
+//================================================链表应用
+//typedef struct student{
+//    int data;
+//    struct student *next;
+//}Node;
+//Node *creat_head(){
+//    Node *head =(Node*)malloc(sizeof(Node));
+//    head->next=NULL;
+//    return head;
+//}
+//void insert_head(int data,Node *head){
+//    Node *p=(Node*)malloc(sizeof(Node));
+//    p->data=data;
+//    p->next=head->next;
+//    head->next=p;
+//    printf("头部插入数据%d\n",data);
+//}
+//void remove_node(int data,Node *head){
+//    Node *p=head;
+//    while (p!=NULL){
+//        if((p->next==NULL)&&(p->data!=data)){
+//            printf("%d不存在无法删除\n",data);
+//            break;
+//        }
+//        if((p->next)->data==data){
+//            Node*p1=p->next;
+//            p->next=(p->next)->next;
+//            free(p1);
+//            printf("%d已删除\n",data);
+//            break;
+//        }
+//        p=p->next;
+//    }
+//}
+//void insert_sort(int data,Node *head){
+//    Node *p1 =(Node*)malloc(sizeof(Node));
+//    p1->data=data;
+//    Node *p=head;
+//    while (p!=NULL){
+//        if(p->next==NULL){
+//            p1->next=p->next;
+//            p->next=p1;
+//            break;
+//        }
+//        if(p1->data>=(p->next)->data){
+//            p1->next=p->next;
+//            p->next=p1;
+//            break;
+//        }
+//        p=p->next;
+//    }
+//    printf("按顺序插入数据%d\n",data);
+//}
+//void Node_print(Node *head){
+//    Node *p=head->next;
+//    while (p!=NULL){
+//        printf("%d\n",p->data);
+//        p=p->next;
+//    }
+//}
+//int main(){
+//    Node *head = creat_head();
+//    insert_head(10,head);
+//    insert_head(40,head);
+//    insert_head(70,head);
+//    insert_head(90,head);
+//    insert_sort(500,head);
+//    insert_sort(5,head);
+//    remove_node(19,head);
+//    remove_node(5,head);
+//    Node_print(head);
+//    return 0;
+//}
+//=================================================================10_2
+//------------------------------------------------------------------
+int main() {
+    float num1, num2, result;
+    char operator_char;
+    printf("请输入num1 运算符 num2:\n");
+    scanf("%f %c %f", &num1, &operator_char, &num2);
+//    printf("%.2f %c %.2f\n", num1, operator_char, num2);
+    switch (operator_char)
+    {
+        case '+':
+            result = num1+num2;
+            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
             break;
-        }
-        if((p->next)->data==data){
-            Node*p1=p->next;
-            p->next=(p->next)->next;
-            free(p1);
-            printf("%d已删除\n",data);
+        case '-':
+            result = num1-num2;
+            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
             break;
-        }
-        p=p->next;
+        case '*':
+            result = num1*num2;
+            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
+            break;
+        case '/':
+            result = num1/num2;
+            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
+            break;
+        default:
+            printf("运算符错误\n");
+            break;
     }
-}
-void insert_sort(int data,Node *head){
-    Node *p1 =(Node*)malloc(sizeof(Node));
-    p1->data=data;
-    Node *p=head;
-    while (p!=NULL){
-        if(p->next==NULL){
-            p1->next=p->next;
-            p->next=p1;
-            break;
-        }
-        if(p1->data>=(p->next)->data){
-            p1->next=p->next;
-            p->next=p1;
-            break;
-        }
-        p=p->next;
-    }
-    printf("按顺序插入数据%d\n",data);
-}
-void Node_print(Node *head){
-    Node *p=head->next;
-    while (p!=NULL){
-        printf("%d\n",p->data);
-        p=p->next;
-    }
-}
-int main(){
-    Node *head = creat_head();
-    insert_head(10,head);
-    insert_head(40,head);
-    insert_head(70,head);
-    insert_head(90,head);
-    insert_sort(500,head);
-    insert_sort(5,head);
-    remove_node(19,head);
-    remove_node(5,head);
-    Node_print(head);
+//    printf("%.f%c%.f=%.f",num1,operator_char,num2,result);
     return 0;
-
 }
+
 
 
