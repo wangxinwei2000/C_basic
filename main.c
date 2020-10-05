@@ -175,7 +175,7 @@
 //int sum_str(char*Str,char *str){
 //    int sum=0,len=strlen(str);
 //    char *p =strstr(Str,str);
-////    printf("%s\n",p);//result=abcdsdabcdedabcdwd//第一次出现abc后的字符串
+//    printf("%s\n",p);//result=abcdsdabcdedabcdwd//第一次出现abc后的字符串
 //    while (p!=NULL){
 //        sum++;
 //        p=p+3;
@@ -264,37 +264,122 @@
 //}
 //=================================================================10_2
 //------------------------------------------------------------------
-int main() {
-    float num1, num2, result;
-    char operator_char;
-    printf("请输入num1 运算符 num2:\n");
-    scanf("%f %c %f", &num1, &operator_char, &num2);
-//    printf("%.2f %c %.2f\n", num1, operator_char, num2);
-    switch (operator_char)
-    {
-        case '+':
-            result = num1+num2;
-            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
-            break;
-        case '-':
-            result = num1-num2;
-            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
-            break;
-        case '*':
-            result = num1*num2;
-            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
-            break;
-        case '/':
-            result = num1/num2;
-            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
-            break;
-        default:
-            printf("运算符错误\n");
-            break;
-    }
-//    printf("%.f%c%.f=%.f",num1,operator_char,num2,result);
+//int main() {
+//    float num1, num2, result;
+//    char operator_char;
+//    printf("请输入num1 运算符 num2:\n");
+//    scanf("%f %c %f", &num1, &operator_char, &num2);
+////    printf("%.2f %c %.2f\n", num1, operator_char, num2);
+//    switch (operator_char)
+//    {
+//        case '+':
+//            result = num1+num2;
+//            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
+//            break;
+//        case '-':
+//            result = num1-num2;
+//            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
+//            break;
+//        case '*':
+//            result = num1*num2;
+//            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
+//            break;
+//        case '/':
+//            result = num1/num2;
+//            printf("%.f%c%.f=%.2f",num1,operator_char,num2,result);
+//            break;
+//        default:
+//            printf("运算符错误\n");
+//            break;
+//    }
+////    printf("%.f%c%.f=%.f",num1,operator_char,num2,result);
+//    return 0;
+//}
+//===================================================================================计算器10_5
+//float Add(float num1, float num2){
+//    return num1+num2;
+//}
+//float Sub(float num1, float num2){
+//    return num1-num2;
+//}
+//float Mul(float num1, float num2){
+//    return num1*num2;
+//}
+//float Div(float num1, float num2){
+//    return num1/num2;
+//}
+//int main(){
+//    double (*Func[4])(float, float)={Add,Sub,Mul,Div};
+//    float num1,num2;
+//    char operator;
+//    printf("请输入数据：");
+//    scanf("%f %c %f",&num1,&operator,&num2);
+//    switch(operator){
+//        case '+':printf("result=%.2f",Func[0](num1,num2));
+//            break;
+//        case '-':printf("result=%.2f",Func[1](num1,num2));
+//            break;
+//        case '*':printf("result=%.2f",Func[2](num1,num2));
+//            break;
+//        case '/':printf("result=%.2f",Func[3](num1,num2));
+//            break;
+//        default:printf("运算符错误");
+//            break;
+//    }
+//    return 0;
+//}
+//===================================================================================常见字符串操作函数
+//========strok()字符串截取strtok 会破坏原来字符串   用\0替代分割的标志
+//void sp_str(char *Str, char *str){
+//    char *p=strtok(Str,str);
+//    while (p!=NULL){
+//        puts(p);
+//        p=strtok(NULL,str);
+//    }
+//}
+//int main(){
+//    char Str[]="aaa.bbb.ccc.ddd.eee",str_cp[100],*ch,str[]=".";
+//    strcpy(str_cp,Str);//拷贝函数
+//    puts(str_cp);
+//    sp_str(Str,str);
+//    return 0;
+//}
+//字符串逆置======================================================================10_2
+//void rev_str(char *str){
+//    int i=0,j=strlen(str)-1;
+//    char p[100];
+//    strcpy(p,str);
+//    while (i!=j) {
+//        char temp = str[i];
+//        str[i] = str[j];
+//        str[j] = temp;
+//        i++;
+//        j--;
+//    }
+//    puts(p);
+//    strcat(p,str+1);
+//    puts(p);
+//}
+//
+//int main(){
+//    char str[]="abcdefghijk",str_cp[]="123123";
+//    rev_str(str);
+//    strcat(str,str_cp);
+//    puts(str);
+//    puts(str);
+//    return 0;
+//}
+//==================================================================================
+int main(){
+    char c,b;
+    printf("please input c  ");
+    scanf("%c",&c);
+    getchar();
+    printf("please input b  ");
+    scanf("%c",&b);
+    printf("c=%c b=%c",c,b);
     return 0;
 }
-
-
-
+//please input c5
+//please input b6
+//c=5 b=6
