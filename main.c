@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "test1.h"
 #include <string.h>
+
 //void Input(int *arr);
 //void sort_1(int *arr);
 //void Print(int *arr);
@@ -370,16 +371,30 @@
 //    return 0;
 //}
 //==================================================================================
-int main(){
-    char c,b;
-    printf("please input c  ");
-    scanf("%c",&c);
-    getchar();
-    printf("please input b  ");
-    scanf("%c",&b);
-    printf("c=%c b=%c",c,b);
-    return 0;
-}
+//int main(){
+//    char c,b;
+//    printf("please input c  ");
+//    scanf("%c",&c);
+//    getchar();
+//    printf("please input b  ");
+//    scanf("%c",&b);
+//    printf("c=%c b=%c",c,b);
+//    return 0;
+//}
 //please input c5
 //please input b6
 //c=5 b=6
+//==============================================================10_7
+#include<stdio.h>
+int main (void){
+    int n;
+    pos_1:
+    printf("请输入一个整数：");
+    scanf("%d",&n);
+    if(n<0){
+        printf("输入错误！ \n");
+        goto pos_1;
+    }
+    printf("成功输入整数：%d",n);
+    return 0;
+}
