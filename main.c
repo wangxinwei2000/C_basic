@@ -270,7 +270,7 @@
 //    char operator_char;
 //    printf("请输入num1 运算符 num2:\n");
 //    scanf("%f %c %f", &num1, &operator_char, &num2);
-////    printf("%.2f %c %.2f\n", num1, operator_char, num2);
+//    printf("%.2f %c %.2f\n", num1, operator_char, num2);
 //    switch (operator_char)
 //    {
 //        case '+':
@@ -385,16 +385,54 @@
 //please input b6
 //c=5 b=6
 //==============================================================10_7
-#include<stdio.h>
-int main (void){
-    int n;
-    pos_1:
-    printf("请输入一个整数：");
-    scanf("%d",&n);
-    if(n<0){
-        printf("输入错误！ \n");
-        goto pos_1;
+//int main (void){
+//    int n;
+//    pos_1:
+//    printf("请输入一个整数：");
+//    scanf("%d",&n);
+//    if(n<0){
+//        printf("输入错误！ \n");
+//        goto pos_1;
+//    }
+//    printf("成功输入整数：%d",n);
+//    return 0;
+//}
+//int main(){
+//    int arr[8];
+//    printf("%d\n", sizeof(arr));
+//    return 0;
+//}
+//=============================================10_8链表操作字符串
+typedef struct student{
+    int id;
+    char name[20];
+    char sex[5];
+    struct student *next;
+}st;
+st *creat_head(){
+    st *head=(st*)malloc(sizeof(st));
+    head->next=NULL;
+}
+void insert_next(st *head,int id, char *name, char *sex){
+    st *new_st=(st*)malloc(sizeof(st));
+    new_st->id=id;
+    strcpy(new_st->name,name);
+    strcpy(new_st->sex,sex);
+    new_st->next=head->next;
+    head->next=new_st;
+}
+void print_st(st *head){
+    st *p=head->next;
+    while (p!=NULL){
+        printf("id=%d name=%s sex=%s \n",p->id,p->name,p->sex);
+        p=p->next;
     }
-    printf("成功输入整数：%d",n);
+}
+int main(){
+    st *head=creat_head();
+
+    insert_next(head,18,"张三","男");
+
+    print_st(head);
     return 0;
 }
