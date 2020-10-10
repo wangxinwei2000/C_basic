@@ -403,36 +403,58 @@
 //    return 0;
 //}
 //=============================================10_8链表操作字符串
-typedef struct student{
-    int id;
-    char name[20];
-    char sex[5];
-    struct student *next;
-}st;
-st *creat_head(){
-    st *head=(st*)malloc(sizeof(st));
-    head->next=NULL;
-}
-void insert_next(st *head,int id, char *name, char *sex){
-    st *new_st=(st*)malloc(sizeof(st));
-    new_st->id=id;
-    strcpy(new_st->name,name);
-    strcpy(new_st->sex,sex);
-    new_st->next=head->next;
-    head->next=new_st;
-}
-void print_st(st *head){
-    st *p=head->next;
-    while (p!=NULL){
-        printf("id=%d name=%s sex=%s \n",p->id,p->name,p->sex);
-        p=p->next;
-    }
+//typedef struct student{
+//    int id;
+//    char name[20];
+//    char sex[5];
+//    struct student *next;
+//}st;
+//st *creat_head(){
+//    st *head=(st*)malloc(sizeof(st));
+//    head->next=NULL;
+//}
+//void insert_next(st *head,int id, char *name, char *sex){
+//    st *new_st=(st*)malloc(sizeof(st));
+//    new_st->id=id;
+//    strcpy(new_st->name,name);
+//    strcpy(new_st->sex,sex);
+//    new_st->next=head->next;
+//    head->next=new_st;
+//}
+//void print_st(st *head){
+//    st *p=head->next;
+//    while (p!=NULL){
+//        printf("id=%d name=%s sex=%s \n",p->id,p->name,p->sex);
+//        p=p->next;
+//    }
+//}
+//int main(){
+//    st *head=creat_head();
+//
+//    insert_next(head,18,"张三","男");
+//
+//    print_st(head);
+//    return 0;
+//}
+//=======================================================================//10_9静态局部变量
+//void func(){
+//    static int b=10;//静态变量只初始化一次，下次就不执行这句了。
+//    b++;
+//    printf("%d\n",b);
+//}
+//int main(){
+//    for(int i=0;i<10;i++){
+//        func();
+//    }
+//    return 0;
+//}
+//========================================================================//10_10静态全局变量
+static int c=10;//作用域可以在本文件中使用，不可以在其他文件中使用，存储在数据区，生命周期从程序创建到程序销毁，
+void func(){
+    printf("c=%d\n",c);
 }
 int main(){
-    st *head=creat_head();
-
-    insert_next(head,18,"张三","男");
-
-    print_st(head);
+    func();
+    printf("c=%d\n",c);
     return 0;
 }
