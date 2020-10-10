@@ -457,4 +457,5 @@ int main(){
     func();
     printf("c=%d\n",c);
     return 0;
+
 }
