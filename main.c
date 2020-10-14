@@ -449,13 +449,29 @@
 //    return 0;
 //}
 //========================================================================//10_10静态全局变量
-static int c=10;//作用域可以在本文件中使用，不可以在其他文件中使用，存储在数据区，生命周期从程序创建到程序销毁，
-void func(){
-    printf("c=%d\n",c);
+//static int c=10;//作用域可以在本文件中使用，不可以在其他文件中使用，存储在数据区，生命周期从程序创建到程序销毁，
+//void func(){
+//    printf("c=%d\n",c);
+//}
+//int main(){
+//    func();
+//    printf("c=%d\n",c);
+//    return 0;
+//}
+//========================================================================100以内素数判断
+void prime_num(int start_num,int end_num){
+    for(int i=start_num;i<=end_num;i++){
+        for(int j=2;j<=i;j++){
+            if(i==j){
+                printf("%d\n",j);
+                break;
+            }
+            if(i%j==0)
+                break;
+        }
+    }
 }
 int main(){
-    func();
-    printf("c=%d\n",c);
+    prime_num(2,100);
     return 0;
-
 }
