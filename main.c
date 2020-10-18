@@ -459,19 +459,138 @@
 //    return 0;
 //}
 //========================================================================100以内素数判断
-void prime_num(int start_num,int end_num){
-    for(int i=start_num;i<=end_num;i++){
-        for(int j=2;j<=i;j++){
-            if(i==j){
-                printf("%d\n",j);
-                break;
-            }
-            if(i%j==0)
-                break;
-        }
+//void prime_num(int start_num,int end_num){
+//    for(int i=start_num;i<=end_num;i++){
+//        for(int j=2;j<=i;j++){
+//            if(i==j){
+//                printf("%d\n",j);
+//                break;
+//            }
+//            if(i%j==0)
+//                break;
+//        }
+//    }
+//}
+//int main(){
+//    prime_num(2,100);
+//    return 0;
+//}
+//=============================================================================10_16杨辉三角
+//int binomial(int k,int n){
+//    if (k>n){
+//        printf("数据输入错误\n");
+//        return 0;
+//    }
+//    int num1=1,num2=1,result;
+//    for(int i=n-k+1;i<=n;i++)
+//        num1=num1*i;
+//    for(int i=1;i<=k;i++)
+//        num2=num2*i;
+//    result=num1/num2;
+//    return result;
+//}
+//void Yanghui_triangle(int n){
+//      for(int i=0;i<=n;i++){
+//            for(int j=0;j<=i;j++)
+//                printf("%d ",binomial(j,i));
+//            printf("\n");
+//      }
+//}
+//
+//int main(){
+////   int num=binomial(0,0);
+////   printf("result=%d\n",num);
+//    Yanghui_triangle(10);
+//    return 0;
+//}
+//===========================================================================10_17经典算法43
+//void swap_head(int *arr,int n){
+//    int max=arr[0],loc=0;
+//    for(int i=0;i<n;i++){
+//        if(arr[i]>max) {
+//            max = arr[i];
+//            loc = i;
+//        }
+//    }
+//    int temp=arr[0];
+//    arr[0]=arr[loc];
+//    arr[loc]=temp;
+//}
+//void swap_last(int *arr,int n){
+//    int min=arr[0],loc=0;
+//    for(int i=0;i<n;i++){
+//        if(arr[i]<min) {
+//            min = arr[i];
+//            loc = i;
+//        }
+//    }
+//    int temp=arr[n-1];
+//    arr[n-1]=arr[loc];
+//    arr[loc]=temp;
+//}
+//void arr_print(int *arr,int n){
+//    for(int i=0;i<n;i++)
+//        printf("%d ",arr[i]);
+//    printf("\n");
+//}
+//int main(){
+//    int arr[10]={80,2,3,4,5,999,7,8,9,10};
+//    arr_print(arr,10);
+//    swap_head(arr,10);
+//    arr_print(arr,10);
+//    swap_last(arr,10);
+//    arr_print(arr,10);
+//    return 0;
+//}
+typedef int elmtype;
+typedef struct node{
+    elmtype data;
+    struct node* next;
+}Node;
+typedef enum ret_type {ERROR=-1,ok=0} Status;
+typedef Node* LinkedList;
+LinkedList node_create(elmtype data);
+Status list_print(LinkedList head);
+Status list_push_front(LinkedList head, elmtype data) {
+    if (head == NULL)
+        return ERROR;
+    if (head->next == NULL) {
+        LinkedList newNode = node_create(data);
+        head->next = newNode;
+    } else {
+        LinkedList newNode = node_create(data);
+        newNode->next = head->next;
+        head->next = newNode;
     }
 }
-int main(){
-    prime_num(2,100);
+Status list_print(LinkedList head) {
+    if (head == NULL) {
+        return ERROR;
+    }
+    LinkedList ptr = head->next;
+    while (ptr) {
+        printf("%d", ptr->data);
+        ptr = ptr->next;
+        printf("\n");
+    }
+    printf("\n");
+    return ok;
+}
+LinkedList node_create(elmtype data){
+    LinkedList node=(LinkedList)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    return node;
+}
+int main() {
+    LinkedList head = node_create(0);
+    list_push_front(head,1);
+    list_push_front(head,2);
+    list_push_front(head,3);
+    list_push_front(head,4);
+    list_push_front(head,5);
+    list_print(head);
+    printf("\n");
     return 0;
 }
+
