@@ -542,55 +542,174 @@
 //    arr_print(arr,10);
 //    return 0;
 //}
-typedef int elmtype;
+//typedef int elmtype;
+//typedef struct node{
+//    elmtype data;
+//    struct node* next;
+//}Node;
+//typedef enum ret_type {ERROR=-1,ok=0} Status;
+//typedef Node* LinkedList;
+//LinkedList node_create(elmtype data);
+//Status list_print(LinkedList head);
+//Status list_push_front(LinkedList head, elmtype data) {
+//    if (head == NULL)
+//        return ERROR;
+//    if (head->next == NULL) {
+//        LinkedList newNode = node_create(data);
+//        head->next = newNode;
+//    } else {
+//        LinkedList newNode = node_create(data);
+//        newNode->next = head->next;
+//        head->next = newNode;
+//    }
+//}
+//Status list_print(LinkedList head) {
+//    if (head == NULL) {
+//        return ERROR;
+//    }
+//    LinkedList ptr = head->next;
+//    while (ptr) {
+//        printf("%d", ptr->data);
+//        ptr = ptr->next;
+//        printf("\n");
+//    }
+//    printf("\n");
+//    return ok;
+//}
+//LinkedList node_create(elmtype data){
+//    LinkedList node=(LinkedList)malloc(sizeof(Node));
+//    node->data = data;
+//    node->next = NULL;
+//    return node;
+//}
+//int main() {
+//    LinkedList head = node_create(0);
+//    list_push_front(head,1);
+//    list_push_front(head,2);
+//    list_push_front(head,3);
+//    list_push_front(head,4);
+//    list_push_front(head,5);
+//    list_print(head);
+//    printf("\n");
+//    return 0;
+//}
+//=================================================================10_20 Current
+//int main(){
+//    int Arr[]={66,231,123,3,4234,432,423,4,34231,2313123,324},m=0,sum= sizeof(Arr)/4,k=1,j=1,t=0;
+//    int arr[sum];
+//    for(int i=1;i<=sum;i++){
+//        arr[i-1]=i;
+//    }
+//    for(int i=0;i<sum;i++)
+//        printf("%d ",Arr[i]);
+//    printf("\n");
+//    while (m<sum-1){
+//        t=0;
+//       while(t<sum){
+//           if(arr[t]!=0){
+//               if(k==3){
+//                   printf("%d\n",Arr[t]);
+//                   arr[t]=0;
+//                   m++;
+//                   k=1;
+//               } else{
+//                   k++;
+//               }
+//           }
+//           t++;
+//       }
+//    }
+//    for(int i=0;i<sum;i++)
+//    {
+//        if(arr[i]!=0){
+//            printf("最后的数为%d ",Arr[i]);
+//            break;
+//        }
+//    }
+//    return 0;
+//}
+//=================================================================10_22双链表
+
 typedef struct node{
-    elmtype data;
-    struct node* next;
+    int data;
+    struct node *pre;
+    struct node *next;
 }Node;
-typedef enum ret_type {ERROR=-1,ok=0} Status;
-typedef Node* LinkedList;
-LinkedList node_create(elmtype data);
-Status list_print(LinkedList head);
-Status list_push_front(LinkedList head, elmtype data) {
-    if (head == NULL)
-        return ERROR;
-    if (head->next == NULL) {
-        LinkedList newNode = node_create(data);
-        head->next = newNode;
-    } else {
-        LinkedList newNode = node_create(data);
-        newNode->next = head->next;
-        head->next = newNode;
-    }
+Node *creat_head(){
+    Node *head=(Node*)malloc(sizeof(Node));
+    head->next=NULL;
+    head->pre=NULL;
+    return head;
 }
-Status list_print(LinkedList head) {
-    if (head == NULL) {
-        return ERROR;
+void insert_head(Node *head,int data){
+    Node *new_node=(Node*)malloc(sizeof(Node));
+    new_node->data=data;
+    new_node->next=head->next;
+    if(head->next!=NULL){
+        head->next->pre=new_node;
     }
-    LinkedList ptr = head->next;
-    while (ptr) {
-        printf("%d", ptr->data);
-        ptr = ptr->next;
-        printf("\n");
+    new_node->pre=head;
+    head->next=new_node;
+}
+void print_node_next(Node *head){
+    Node *p=head->next;
+    while(p!=NULL){
+        printf("%d ",p->data);
+        p=p->next;
     }
     printf("\n");
-    return ok;
 }
-LinkedList node_create(elmtype data){
-    LinkedList node=(LinkedList)malloc(sizeof(Node));
-    node->data = data;
-    node->next = NULL;
-    return node;
-}
-int main() {
-    LinkedList head = node_create(0);
-    list_push_front(head,1);
-    list_push_front(head,2);
-    list_push_front(head,3);
-    list_push_front(head,4);
-    list_push_front(head,5);
-    list_print(head);
+void print_node_pre(Node *head,int data){
+    Node *p=head->next;
+    while(p!=NULL){
+        if(p->data==data)
+            break;
+        p=p->next;
+    }
+    while (p->pre!=NULL){
+        printf("%d ",p->data);
+        p=p->pre;
+    }
     printf("\n");
+}
+void remove_node(Node *head,int data){
+    Node *p=head;
+    while(p!=NULL){
+        if(p->next->data==data&&p->next->next==NULL){
+            p->next=NULL;
+            break;
+        }
+        if((p->next==NULL)&&(p->data!=data)){
+            printf("%d不存在无法删除\n",data);
+            break;
+        }
+        if(p->next->data==data){
+             Node *p1=p->next;
+             p->next->next->pre=p;
+             p->next=p->next->next;
+             free(p1);
+             printf("数据：%d 已经删除\n",data);
+             break;
+        }
+        p=p->next;
+    }
+}
+int main(){
+    Node *head=creat_head();
+    insert_head(head,10);
+    insert_head(head,20);
+    insert_head(head,30);
+    insert_head(head,40);
+    insert_head(head,50);
+    insert_head(head,60);
+    insert_head(head,70);
+    insert_head(head,80);
+    print_node_next(head);
+    print_node_pre(head,40);
+    remove_node(head,80);
+    print_node_next(head);
+    remove_node(head,10);
+    print_node_next(head);
     return 0;
 }
 
