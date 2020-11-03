@@ -413,6 +413,7 @@
 //st *creat_head(){
 //    st *head=(st*)malloc(sizeof(st));
 //    head->next=NULL;
+
 //}
 //void insert_next(st *head,int id, char *name, char *sex){
 //    st *new_st=(st*)malloc(sizeof(st));
