@@ -427,6 +427,7 @@
 //    while (p!=NULL){
 //        printf("id=%d name=%s sex=%s \n",p->id,p->name,p->sex);
 //        p=p->next;
+
 //    }
 //}
 //int main(){
