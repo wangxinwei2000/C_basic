@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "test1.h"
 #include <string.h>
-
+#include  <ctype.h>
 //void Input(int *arr);
 //void sort_1(int *arr);
 //void Print(int *arr);
@@ -542,6 +542,7 @@
 //    arr_print(arr,10);
 //    return 0;
 //}
+//=====================================================================
 //typedef int elmtype;
 //typedef struct node{
 //    elmtype data;
@@ -569,9 +570,8 @@
 //    }
 //    LinkedList ptr = head->next;
 //    while (ptr) {
-//        printf("%d", ptr->data);
+//        printf("%d ->", ptr->data);
 //        ptr = ptr->next;
-//        printf("\n");
 //    }
 //    printf("\n");
 //    return ok;
@@ -582,6 +582,38 @@
 //    node->next = NULL;
 //    return node;
 //}
+//Status list_pop_front(LinkedList head, elmtype data){
+//    if(head==NULL)
+//    {
+//        printf("链表不存在\n");
+//        return ERROR;
+//    }
+//    LinkedList p=head;
+//    while (p!=NULL){
+//        if(p->next->data==data){
+//            LinkedList p1=p->next;
+//            p->next=p->next->next;
+//            printf("%d 删除成功\n",data);
+//            free(p1);
+//            return ok;
+//        }
+//        p=p->next;
+//        if(p->next==NULL){
+//            printf("%d 不存在\n",data);
+//            return ok;
+//        }
+//    }
+//}
+//Status list_data_store(LinkedList head,elmtype n){
+//    if(head==NULL){
+//        printf("链表不存在\n");
+//        return ERROR;
+//    }
+//    for(int i=1;i<=n;i++){
+//        list_push_front(head,i);
+//    }
+//    return ok;
+//}
 //int main() {
 //    LinkedList head = node_create(0);
 //    list_push_front(head,1);
@@ -590,12 +622,14 @@
 //    list_push_front(head,4);
 //    list_push_front(head,5);
 //    list_print(head);
+//    list_pop_front(head,3);
+//    list_print(head);
 //    printf("\n");
 //    return 0;
 //}
 //=================================================================10_20 Current
 //int main(){
-//    int Arr[]={66,231,123,3,4234,432,423,4,34231,2313123,324},m=0,sum= sizeof(Arr)/4,k=1,j=1,t=0;
+//    int Arr[]={1,2,3,4,5,6,7,8,9,10,11,12},m=0,sum= sizeof(Arr)/4,k=1,j=1,t=0;
 //    int arr[sum];
 //    for(int i=1;i<=sum;i++){
 //        arr[i-1]=i;
@@ -630,86 +664,355 @@
 //}
 //=================================================================10_22双链表
 
-typedef struct node{
-    int data;
-    struct node *pre;
-    struct node *next;
-}Node;
-Node *creat_head(){
-    Node *head=(Node*)malloc(sizeof(Node));
-    head->next=NULL;
-    head->pre=NULL;
-    return head;
-}
-void insert_head(Node *head,int data){
-    Node *new_node=(Node*)malloc(sizeof(Node));
-    new_node->data=data;
-    new_node->next=head->next;
-    if(head->next!=NULL){
-        head->next->pre=new_node;
+//typedef struct node{
+//    int data;
+//    struct node *pre;
+//    struct node *next;
+//}Node;
+//Node *creat_head(){
+//    Node *head=(Node*)malloc(sizeof(Node));
+//    head->next=NULL;
+//    head->pre=NULL;
+//    return head;
+//}
+//void insert_head(Node *head,int data){
+//    Node *new_node=(Node*)malloc(sizeof(Node));
+//    new_node->data=data;
+//    new_node->next=head->next;
+//    if(head->next!=NULL){
+//        head->next->pre=new_node;
+//    }
+//    new_node->pre=head;
+//    head->next=new_node;
+//}
+//void print_node_next(Node *head){
+//    Node *p=head->next;
+//    while(p!=NULL){
+//        printf("%d ",p->data);
+//        p=p->next;
+//    }
+//    printf("\n");
+//}
+//void print_node_pre(Node *head,int data){
+//    Node *p=head->next;
+//    while(p!=NULL){
+//        if(p->data==data)
+//            break;
+//        p=p->next;
+//    }
+//    while (p->pre!=NULL){
+//        printf("%d ",p->data);
+//        p=p->pre;
+//    }
+//    printf("\n");
+//}
+//void remove_node(Node *head,int data){
+//    Node *p=head;
+//    while(p!=NULL){
+//        if(p->next->data==data&&p->next->next==NULL){
+//            printf("数据：%d 已经删除\n",data);
+//            p->next=NULL;
+//            break;
+//        }
+//        if((p->next==NULL)&&(p->data!=data)){
+//            printf("%d不存在无法删除\n",data);
+//            break;
+//        }
+//        if(p->next->data==data){
+//             Node *p1=p->next;
+//             p->next->next->pre=p;
+//             p->next=p->next->next;
+//             free(p1);
+//             printf("数据：%d 已经删除\n",data);
+//             break;
+//        }
+//        p=p->next;
+//    }
+//}
+//int main(){
+//    Node *head=creat_head();
+//    insert_head(head,10);
+//    insert_head(head,20);
+//    insert_head(head,30);
+//    insert_head(head,40);
+//    insert_head(head,50);
+//    insert_head(head,60);
+//    insert_head(head,70);
+//    insert_head(head,80);
+//    print_node_next(head);
+//    print_node_pre(head,40);
+//    remove_node(head,80);
+//    print_node_next(head);
+//    remove_node(head,10);
+//    print_node_next(head);
+//    return 0;
+//}
+//===============================================================10_22约瑟夫问题
+//typedef struct node{
+//    int data;
+//    struct node *next
+//}Node;
+//Node *creat_head(int head_data,int headnext_data ){
+//    Node *head=(Node*)malloc(sizeof(Node));
+//    head->data=head_data;
+//    head->next=(Node*)malloc(sizeof(Node));
+//    head->next->data=headnext_data;
+//    head->next->next=head;
+//    return head;
+//}
+//void insert_head(Node *head,int data){
+//    Node *new_node = (Node*)malloc(sizeof(Node));
+//    new_node->data = data;
+//    new_node->next = head->next;
+//    head->next = new_node;
+//}
+//void remove_current_node(Node *head){
+//    int k=0;
+//    Node *p = head;
+//    while(p!=p->next->next){
+//        k++;
+//        if(k==2){
+//            Node *p1=p->next;
+//            printf("%d ",p->next->data);
+//            p->next=p->next->next;
+//            free(p1);
+//            k=0;
+//        }
+//        p=p->next;
+//    }
+//    if(k!=0){
+//        printf("最后的数为：%d\n",p->data);
+//
+//    } else{
+//        printf("最后的数为：%d\n",p->next->data);
+//    }
+//}
+//void current_print(Node *head){
+//    Node *p = head;
+//    while (p){
+//        printf("%d\n",p->data);
+//        p=p->next;
+//    }
+//}
+//int main(){
+//    Node *head =creat_head(1,12);
+//    insert_head(head,11);
+//    insert_head(head,10);
+//    insert_head(head,9);
+//    insert_head(head,8);
+//    insert_head(head,7);
+//    insert_head(head,6);
+//    insert_head(head,5);
+//    insert_head(head,4);
+//    insert_head(head,3);
+//    insert_head(head,2);
+//    remove_current_node(head);
+//    return 0;
+//}
+//=======================================================================
+//#include<assert.h>
+////#include<ctype.h>
+////
+////#define INITSIZE 20
+////#define INCREMENT 10
+////#define MAXBUFFER 10
+////#define LEN sizeof(Elemtype)
+////typedef double Elemtype;
+////typedef struct{
+////    Elemtype *base;
+////    Elemtype *top;
+////    int StackSize;
+////}SqStack;
+////
+////void InitStack(SqStack *S)
+////{
+////    S->base=(Elemtype*)malloc(LEN*INITSIZE);
+////    assert(S->base != NULL);
+////    S->top=S->base;
+////    S->StackSize=INITSIZE;
+////}
+////
+////void PushStack(SqStack *S,Elemtype e)
+////{
+////    if(S->top - S->base >= S->StackSize)
+////    {
+////        S->base=(Elemtype*)realloc(S->base,(S->StackSize+INCREMENT)*LEN);
+////        assert(S->base !=NULL);
+////        S->top=S->base+S->StackSize;
+////        S->StackSize+=INCREMENT;
+////    }
+////    *S->top =e;
+////    S->top++;
+////}
+////
+////void PopStack(SqStack *S,Elemtype *e)
+////{
+////    *e=*--S->top;
+////}
+////
+////void CalFunction(SqStack *S,char str[])
+////{
+////    Elemtype number,e,d;
+////    char arr[MAXBUFFER];
+////    int i=0,j=0;
+////
+////    InitStack(S);
+////
+////    while(str[i]!='\0')
+////    {
+////        while(isdigit(str[i])||str[i]=='.') //过滤数字
+////        {
+////            arr[j++]=str[i++];
+////            arr[j]='\0';
+////
+////            if( j >= MAXBUFFER )
+////            {
+////                printf("输入单个数据过大！\n");
+////                return ;
+////            }
+////            if(str[i]==' ')
+////            {
+////                number=atof(arr); //利用atof函数将数字字符转化为double型数据
+////                PushStack(S,number); //将转换的数进行压栈
+////                j=0;
+////                break;
+////            }
+////        }
+////
+////        switch(str[i])
+////        {
+////            case '+':
+////                PopStack(S,&e);
+////                PopStack(S,&d);
+////                PushStack(S,d+e);
+////                break;
+////            case '-':
+////                PopStack(S,&e);
+////                PopStack(S,&d);
+////                PushStack(S,d-e);
+////                break;
+////            case '*':
+////                PopStack(S,&e);
+////                PopStack(S,&d);
+////                PushStack(S,d*e);
+////                break;
+////            case '/':
+////                PopStack(S,&e);
+////                PopStack(S,&d);
+////                if(e == 0)
+////                {
+////                    printf("输入出错，分母为零！\n");
+////                    return ;
+////                }
+////                PushStack(S,d/e);
+////                break;
+////        }
+////        i++;
+////    }
+////
+////    PopStack(S,&e);
+////    printf("计算结果为：%lf",e);
+////}
+////
+////int main()
+////{
+////    char str[100];
+////    SqStack S;
+////    printf("请按逆波兰表达式输入数据,每个数据之间用空格隔开:");
+////    gets(str);
+////    CalFunction(&S,str);
+////    return 0;
+////}
+//======================================================
+
+#define MAXSIZE 100
+typedef int SElemType ;
+typedef enum ret_type {ERROR=-1,Ok=0} Status;
+typedef struct
+{
+    SElemType data [ MAXSIZE ];
+    int top ;
+} SqStack , * SqtackPtr ;
+
+Status Push(SqStack *S, SElemType e){
+    if(S->top>=MAXSIZE-1){
+        printf("栈区已满\n");
+        return ERROR;
+    } else{
+        S->top++;
+        S->data[S->top]=e;
+        return Ok;
     }
-    new_node->pre=head;
-    head->next=new_node;
-}
-void print_node_next(Node *head){
-    Node *p=head->next;
-    while(p!=NULL){
-        printf("%d ",p->data);
-        p=p->next;
-    }
-    printf("\n");
-}
-void print_node_pre(Node *head,int data){
-    Node *p=head->next;
-    while(p!=NULL){
-        if(p->data==data)
-            break;
-        p=p->next;
-    }
-    while (p->pre!=NULL){
-        printf("%d ",p->data);
-        p=p->pre;
-    }
-    printf("\n");
-}
-void remove_node(Node *head,int data){
-    Node *p=head;
-    while(p!=NULL){
-        if(p->next->data==data&&p->next->next==NULL){
-            p->next=NULL;
-            break;
-        }
-        if((p->next==NULL)&&(p->data!=data)){
-            printf("%d不存在无法删除\n",data);
-            break;
-        }
-        if(p->next->data==data){
-             Node *p1=p->next;
-             p->next->next->pre=p;
-             p->next=p->next->next;
-             free(p1);
-             printf("数据：%d 已经删除\n",data);
-             break;
-        }
-        p=p->next;
-    }
-}
-int main(){
-    Node *head=creat_head();
-    insert_head(head,10);
-    insert_head(head,20);
-    insert_head(head,30);
-    insert_head(head,40);
-    insert_head(head,50);
-    insert_head(head,60);
-    insert_head(head,70);
-    insert_head(head,80);
-    print_node_next(head);
-    print_node_pre(head,40);
-    remove_node(head,80);
-    print_node_next(head);
-    remove_node(head,10);
-    print_node_next(head);
-    return 0;
 }
 
+Status Pop(SqStack *S, SElemType *e)
+{
+    if(S->top==-1){
+        printf("栈区已为空无法删除\n");
+        return ERROR;
+    } else{
+        *e = S->data[S->top];
+        S->top--;
+        return Ok;
+    }
+}
+Status suffix(SqStack *S,char str[]){
+       int length = strlen(str),i=0,j=0;
+       char str1[10];
+       while (i<length){
+           if(isdigit(str[i])){
+               if(str[i+1]==' '){
+                   str1[j++]=str[i];
+                   str1[j]='\0';
+                   Push(S,atoi(str1));
+                   j=0;
+
+               } else{
+                   str1[j++]=str[i];
+               }
+           }
+           if(str[i]=='+'||str[i]=='-'||str[i]=='*'||str[i]=='/'){
+               SElemType val1,val2;
+               switch (str[i]){
+                   case '-':
+                       if(isdigit(str[i+1])){
+                           str1[j++]='-';
+                           break;
+                       } else{
+                           Pop(S,&val1);
+                           Pop(S,&val2);
+                           Push(S,val2-val1);
+                           break;
+                       }
+                   case '+':
+                       Pop(S,&val1);
+                       Pop(S,&val2);
+                       Push(S,val2+val1);
+                       break;
+                   case '*':
+                       Pop(S,&val1);
+                       Pop(S,&val2);
+                       Push(S,val1*val2);
+                       break;
+                   case '/':
+                       Pop(S,&val1);
+                       Pop(S,&val2);
+                       Push(S,val2/val1);
+                       break;
+               }
+           }
+           i++;
+       }
+       printf("top=%d \n",S->top);
+       printf("result = %d ",S->data[0]);
+    return Ok;
+}
+int main(){
+    SqStack S;
+    S.top=-1;
+    char str[100];
+    printf("请输入后缀式 ,字符之间用空格相连\n");
+    gets(str);
+    suffix(&S,str);
+    return 0;
+}
