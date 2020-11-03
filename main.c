@@ -360,6 +360,7 @@
 //    puts(p);
 //    strcat(p,str+1);
 //    puts(p);
+
 //}
 //
 //int main(){
