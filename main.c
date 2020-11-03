@@ -1009,6 +1009,7 @@ Status suffix(SqStack *S,char str[]){
        printf("top=%d \n",S->top);
        printf("result = %d ",S->data[0]);
     return Ok;
+
 }
 int main(){
     SqStack S;
